@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+		rel="stylesheet">
+	<script src="https://unpkg.com/htmx.org@2.0.4"
+		integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+		crossorigin="anonymous"></script>
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		#md-manager {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-content: center;
+
+			border: 1px solid red;
+
+			>#md-editor {
+				width: 50%;
+				padding: 20px;
+				line-height: 10px;
+				font-family: 'Courier New', Courier, monospace;
+			}
+
+			>#md-viewer {
+				width: 50%;
+
+				border: 1px solid blue;
+			}
+		}
+
+		body {
+			font-family: "Poppins", serif;
+			font-weight: 300;
+			font-style: normal;
+			font-size: large;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Welcome to Vault!</h1>
+	<hr>
+	<section id="md-manager">
+		<textarea name="" id="md-editor" id="md-viewer" hx-get="http://localhost:8080/raw-content" hx-target="this"
+			hx-swap="innerHTML" hx-trigger="load delay:1000ms">
+    </textarea>
+
+		<div id="md-viewer" hx-get="http://localhost:8080/content" hx-target="this" hx-swap="innerHTML"
+			hx-trigger="load delay:1000ms">Lorem
+			ipsum
+			dolor sit
+			amet consectetur adipisicing elit. Dolor ut nam non architecto, quisquam
+			sequi, ducimus
+			quidem accusamus, doloremque aperiam dignissimos enim eaque pariatur quaerat. Doloremque quas dolore culpa
+			cumque!
+		</div>
+	</section>
+</body>
+
+</html>
