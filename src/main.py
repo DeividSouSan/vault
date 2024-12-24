@@ -1,5 +1,6 @@
 import argparse
 import logging
+import os
 
 import markdown
 
@@ -14,8 +15,10 @@ def main():
     - Markdown to HTML translation
     - Serving the server
     """
+    # Configurando o log
     logging.basicConfig(filename="myapp.log", level=logging.INFO)
 
+    # Configurando o argparser
     parser = argparse.ArgumentParser(
         prog="vault",
         description="A command line program to open Markdown (.md) files into a local web editor.",
@@ -23,6 +26,7 @@ def main():
 
     parser.add_argument("--file", type=str, help="the markdown file to open")
 
+    # Tentando capturar o valor passado como parametro
     try:
         args = vars(parser.parse_args())
         filename = args["file"]
@@ -30,17 +34,22 @@ def main():
         logging.info("Couldn't get arguments.")
         quit()
 
-    if filename:
-        with open(filename, "r", encoding="utf-8") as file:
-            markdownn_text = file.read()
-            html_translated_md = markdown.markdown(markdownn_text)
+    # Abrindo o servidor e servindo index.html
+    with open(
+        "/home/deividsousan/Programação/vault/src/pages/index.html",
+        "r",
+        encoding="utf-8",
+    ) as file:
+        index_page = file.read()
 
-        server = Server(html_translated_md)
-        server.serve()
+    index_page = index_page.replace(
+        "<title>Document</title>", f"<title>{filename}</title>"
+    )
 
-    else:
-        logging.info("Argument --file not given.")
-        quit()
+    print("Servidor rodando na porta: http://localhost:8080/")
+    server = Server(index_page, os.getcwd(), filename)
+    print(os.path.join(os.getcwd(), filename))
+    server.serve()
 
 
 if __name__ == "__main__":
