@@ -56,12 +56,13 @@
 	<h1>Welcome to Vault!</h1>
 	<hr>
 	<section id="md-manager">
-		<textarea name="" id="md-editor" id="md-viewer" hx-get="http://localhost:8080/raw-content" hx-target="this"
+		<textarea name="" id="md-editor" id="md-viewer" hx-get="http://localhost:8080/md-content" hx-target="this"
 			hx-swap="innerHTML" hx-trigger="load delay:1000ms">
     </textarea>
 
-		<div id="md-viewer" hx-get="http://localhost:8080/content" hx-target="this" hx-swap="innerHTML"
-			hx-trigger="load delay:1000ms">Lorem
+		<div id="md-viewer" hx-get="http://localhost:8080/html-content" hx-target="this" hx-swap="innerHTML"
+			hx-trigger="load delay:1000ms">
+			Lorem
 			ipsum
 			dolor sit
 			amet consectetur adipisicing elit. Dolor ut nam non architecto, quisquam
