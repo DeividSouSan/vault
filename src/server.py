@@ -9,56 +9,66 @@ class Server:
     Object that manage both the request handler IndexPage who will serve the page and the HTTPServer.
     """
 
-    index: str
     filename: str
     path: str
 
-    class IndexPage(BaseHTTPRequestHandler):
+    class RequestHandler(BaseHTTPRequestHandler):
         def do_GET(self):
-            match self.path:
-                case "/":
+            if self.path == "/" or self.path == "/index":
+                with open(
+                    "/home/deividsousan/Programação/vault/src/pages/index.html",
+                    "r",
+                    encoding="utf-8",
+                ) as file:
+                    index_page = file.read()
+
+                    index_page = index_page.replace(
+                        "<title>Document</title>",
+                        f"<title>{
+                            Server.filename}</title>",
+                    )
+
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html")
+                self.end_headers()
+                self.wfile.write(index_page.encode("utf-8"))
+
+            elif self.path == "/html-content":
+                filepath = os.path.join(Server.path, Server.filename)
+
+                if os.path.exists(filepath):
                     self.send_response(200)
-                    self.send_header("Content-Type", "text/html")
+                    self.send_header("Content-Type", "text/plain")
                     self.end_headers()
-                    self.wfile.write(Server.index.encode("utf-8"))
 
-                case "/content":
-                    filepath = os.path.join(Server.path, Server.filename)
+                    with open(filepath, "r", encoding="utf-8") as file:
+                        html_content = markdown.markdown(file.read())
+                        self.wfile.write(html_content.encode("utf-8"))
+                else:
+                    self.send_error(404, "Arquivo não encontrado")
 
-                    if os.path.exists(filepath):
-                        self.send_response(200)
-                        self.send_header("Content-Type", "text/plain")
-                        self.end_headers()
+            elif self.path == "/md-content":
+                filepath = os.path.join(Server.path, Server.filename)
 
-                        with open(filepath, "r", encoding="utf-8") as file:
-                            html_content = markdown.markdown(file.read())
-                            self.wfile.write(html_content.encode("utf-8"))
-                    else:
-                        self.send_error(404, "Arquivo não encontrado")
+                if os.path.exists(filepath):
+                    self.send_response(200)
+                    self.send_header("Content-Type", "text/plain")
+                    self.end_headers()
 
-                case "/raw-content":
-                    filepath = os.path.join(Server.path, Server.filename)
+                    with open(filepath, "r", encoding="utf-8") as file:
+                        markdown_content = file.read()
+                        self.wfile.write(markdown_content.encode("utf-8"))
+                else:
+                    self.send_error(404, "Arquivo não encontrado")
 
-                    if os.path.exists(filepath):
-                        self.send_response(200)
-                        self.send_header("Content-Type", "text/plain")
-                        self.end_headers()
+            else:
+                self.send_error(404, "Endpoint não configurado")
 
-                        with open(filepath, "r", encoding="utf-8") as file:
-                            markdown_content = file.read()
-                            self.wfile.write(markdown_content.encode("utf-8"))
-                    else:
-                        self.send_error(404, "Arquivo não encontrado")
-
-                case _:
-                    self.send_error(404, "Endpoint não configurado")
-
-    def __init__(self, index_page, path, filename):
-        Server.index = index_page
+    def __init__(self, path, filename):
         Server.path = path
         Server.filename = filename
 
     @staticmethod
     def serve():
-        app = HTTPServer(("0.0.0.0", 8080), Server.IndexPage)
+        app = HTTPServer(("0.0.0.0", 8080), Server.RequestHandler)
         app.serve_forever()
