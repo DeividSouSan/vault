@@ -6,6 +6,3 @@ The <code>vault</code> is a Python script that allows you to <strong>edit</stron
 
 ![image](https://github.com/user-attachments/assets/63a9e6c3-5c66-45d6-a29b-6d3a86bbda4b)
 
-## Ideia✨
-O surgimento da ideia veio de uma insatisfação pessoal com os software de organização e notas. Em algumas soluções a interface é agradável porém os arquivos são salvos na núvem; em outras os arquivos são salvos localmente porém a organização dos arquivos é confusa e pouco elaborada. Buscando usufruir da _organização de pastas_ do próprio computador e dos _arquivos locais_ surge o `EditMD`. 
- 
