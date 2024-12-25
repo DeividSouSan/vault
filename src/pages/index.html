@@ -43,7 +43,7 @@
 
 		var converter = new showdown.Converter();
 
-		editor.addEventListener("change", async () => {
+		editor.addEventListener("input", async () => {
 			viewer.innerHTML = converter.makeHtml(editor.value);
 
 			const response = await fetch("http://localhost:8080/save", {
