@@ -36,6 +36,21 @@ class Server:
                 self.end_headers()
                 self.wfile.write(index_page.encode("utf-8"))
 
+        def do_POST(self):
+            self.send_response(200)
+            self.send_header("Content-Type", "plain/text")
+            self.end_headers()
+
+            content_length = int(self.headers["Content-Length"])
+            post_data = self.rfile.read(content_length)
+            post_data = post_data.decode("utf-8")
+
+            filepath = os.path.join(Server.path, Server.filename)
+            with open(filepath, "w", encoding="utf-8") as file:
+                file.write(post_data)
+
+            self.wfile.write("Received.".encode("utf-8"))
+
     def __init__(self, path, filename):
         Server.path = path
         Server.filename = filename
