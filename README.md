@@ -1,5 +1,10 @@
-# EditMD📝
-O _EditMD_ é um utilitário para Linux que busca fornecer uma solução para um editor de markdown local e com interface simples e agradável.
+<h1 align="center"><code>vault</code></h1>
+<p align="center">
+The <code>vault</code> is a Python script that allows you to <strong>edit</strong> and <strong>preview</strong>  your local <code>markdown</code> files. It runs a local server on your machine, serving a clean, modern web interface with both an editor and a viewer. This allows you to manage your markdown files without leaving your machine, providing a seamless experience for editing and previewing content in one place.
+</p>
+
+
+![image](https://github.com/user-attachments/assets/63a9e6c3-5c66-45d6-a29b-6d3a86bbda4b)
 
 ## Ideia✨
 O surgimento da ideia veio de uma insatisfação pessoal com os software de organização e notas. Em algumas soluções a interface é agradável porém os arquivos são salvos na núvem; em outras os arquivos são salvos localmente porém a organização dos arquivos é confusa e pouco elaborada. Buscando usufruir da _organização de pastas_ do próprio computador e dos _arquivos locais_ surge o `EditMD`. 
