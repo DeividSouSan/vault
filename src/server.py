@@ -23,9 +23,13 @@ class Server:
                     index_page = file.read()
 
                     index_page = index_page.replace(
-                        "<title>Document</title>",
-                        f"<title>{
-                            Server.filename}</title>",
+                        "[Document]",
+                        Server.filename,
+                    )
+
+                    index_page = index_page.replace(
+                        "[Filename]",
+                        Server.filename,
                     )
 
                 self.send_response(200)
