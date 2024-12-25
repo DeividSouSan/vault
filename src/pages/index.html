@@ -32,12 +32,8 @@
 	<section id="md-manager" class="flex flex-row flex-grow justify-center">
 		<section class="p-10 w-full">
 			<h2 class="bg-gray-100 text-center">Markdown Editor</h2>
-			<textarea name="" id="md-editor" id="md-viewer" hx-get="http://localhost:8080/md-content" hx-target="this"
-				hx-swap="innerHTML" hx-trigger="load delay:1000ms"
-				class="w-full p-4 h-4/5 border border shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none text-gray-700 placeholder-gray-400 antialiased tracking-wider leading-8">
-			# Markdown Example
-			Write texts here...
-    		</textarea>
+			<textarea name="" id="md-editor"
+				class="w-full p-4 h-4/5 border border shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none text-gray-700 placeholder-gray-400 antialiased tracking-wider leading-8">[Markdown]</textarea>
 		</section>
 		<section class="p-10 w-full">
 			<h2 class="bg-gray-100 text-center">HTML Preview</h2>
