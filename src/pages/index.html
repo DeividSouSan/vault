@@ -158,6 +158,14 @@
 
 		var converter = new showdown.Converter();
 
+		window.addEventListener("load", async (event) => {
+			const response = await fetch("http://localhost:8080/get-content");
+			const file_content = await response.text();
+
+			editor.value = file_content;
+			viewer.innerHTML = converter.makeHtml(editor.value);
+		})
+
 		editor.addEventListener("input", async () => {
 			viewer.innerHTML = converter.makeHtml(editor.value);
 
