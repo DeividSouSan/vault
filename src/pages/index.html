@@ -18,24 +18,24 @@
 		rel="stylesheet">
 
 	<style>
+		:root {
+			--body-background: #0D1117;
+
+			--amparo-blue: #415AA6;
+			--daring-indigo: #364A73;
+			--orbital: #6F8ABF;
+			--alphabet-blue: #B3CFF2;
+			--halaka-pila: #F2E085;
+
+			--logo-title-color: #FFFFFF;
+			--logo-subtitle-color: #868687;
+		}
+
 		* {
 			margin: 0;
 			padding: 0;
 			box-sizing: border-box;
 			font-family: "Fira Code";
-		}
-
-		h1 {
-			font-size: 2rem;
-			font-weight: 400;
-			border-bottom: solid rgb(75, 75, 75) 1px;
-			margin-bottom: 1rem;
-		}
-
-		p {
-			color: #252525;
-			margin-top: 1rem;
-			margin-bottom: 1rem;
 		}
 
 		html,
@@ -46,67 +46,90 @@
 			flex-direction: column;
 		}
 
-		header {
+		body {
+			background-color: var(--body-background);
+		}
+
+		.logo {
 			padding: 1rem;
 			text-align: center;
 
+			user-select: none;
+
+
 			>h1 {
-				font-size: 3rem;
-				font-weight: 200;
-				margin-bottom: 0.5rem;
+				font-size: 5rem;
+				font-weight: 900;
+				color: var(--logo-title-color);
+				margin-bottom: 0;
 			}
 
 			>h2 {
-				font-weight: 300;
-				color: #3b82f6;
+				font-weight: 900;
+				color: var(--logo-subtitle-color);
 			}
 		}
 
-		hr {
-			border-color: rgb(25, 25, 25);
-			margin-top: 10px;
-		}
-
-		#md-manager {
+		.container {
 			flex-grow: 1;
 			display: flex;
 			justify-content: center;
-		}
 
-		#md-manager>section {
-			padding: 40px;
-			width: 50%;
-		}
+			>.md-editor,
+			.md-previewer {
+				padding: 40px;
+				width: 50%;
 
-		#md-manager>section h2 {
-			background-color: #f5f5f5;
-			text-align: center;
-			padding: 10px;
-		}
+				>h2 {
+					background-color: #f5f5f5;
+					text-align: center;
+					padding: 10px;
+				}
 
-		#md-editor {
-			width: 100%;
-			height: 80%;
-			padding: 16px;
-			border: 1px solid #d1d5db;
-			box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-			color: #4b5563;
-			font-size: 1rem;
-			font-family: "Fira Code";
-			resize: none;
-		}
+			}
 
-		textarea#md-editor:focus {
-			border-color: #3b82f6;
-			box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
-		}
+			.md-editor {
+				>h2 {
+					border-radius: 9px 9px 0 0;
+				}
 
-		#md-viewer {
-			padding: 2rem;
-			border: 1px solid #d1d5db;
-			box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-			height: 80%;
-			overflow: auto;
+				>textarea {
+					width: 100%;
+					height: 80%;
+					resize: none;
+
+					padding: 16px;
+					border: 1px solid #d1d5db;
+					box-shadow: 0px 6px 0px hsla(0, 0%, 100%, 0.25);
+					border-radius: 0 0 9px 9px;
+
+					color: #4b5563;
+					font-size: 1rem;
+					font-family: "Fira Code";
+				}
+
+				>textarea::placeholder {
+					color: rgb(151, 151, 151);
+				}
+			}
+
+			.md-previewer {
+				>h2 {
+					border-radius: 9px 9px 0 0;
+				}
+
+				>.preview {
+					height: 80%;
+					overflow: auto;
+
+					padding: 2rem;
+					border: 1px solid #d1d5db;
+					border-radius: 0 0 9px 9px;
+					box-shadow: 0px 6px 0px hsla(0, 0%, 100%, 0.25);
+
+					background-color: white;
+				}
+			}
 		}
 
 		footer {
@@ -127,34 +150,32 @@
 			}
 		}
 	</style>
-
-
 </head>
 
 <body>
-	<header>
-		<h1>Welcome to <code>Vault</code>!</h1>
-		<h2>> editing now: [Filename]</h2>
+	<header class="logo">
+		<h1>vault</h1>
+		<h2>edit and preview markdown files</h2>
 	</header>
-	<section id="md-manager">
-		<section>
+	<section class="container">
+		<section class="md-editor">
 			<h2>Markdown Editor</h2>
-			<textarea name="" id="md-editor"></textarea>
+			<textarea class="editor" placeholder="O markdown do arquivo vai aqui..."></textarea>
 		</section>
-		<section>
+		<section class="md-previewer">
 			<h2>HTML Preview</h2>
-			<div id="md-viewer">
+			<div class="preview">
 				<h1>Markdown Example</h1>
 				<p>Write texts here...</p>
 			</div>
 		</section>
 	</section>
 	<footer>
-		Informações sobre o documento
+		@deividsousan
 	</footer>
 	<script>
-		const editor = document.getElementById("md-editor");
-		const viewer = document.getElementById("md-viewer");
+		const editor = document.querySelector(".editor");
+		const viewer = document.querySelector(".preview");
 
 		var converter = new showdown.Converter();
 
@@ -174,9 +195,6 @@
 				body: editor.value
 			})
 		})
-
-
-
 	</script>
 </body>
 
