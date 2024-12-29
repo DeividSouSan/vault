@@ -13,6 +13,7 @@ class Server:
     class RequestHandler(BaseHTTPRequestHandler):
         def do_GET(self):
             if self.path == "/" or self.path == "/index":
+                # Serves the index.html
                 with open(
                     file="/home/deividsousan/Programação/vault/src/pages/index.html",
                     mode="r",
@@ -28,6 +29,7 @@ class Server:
                 self.send_header("Content-Type", "text/html")
                 self.end_headers()
                 self.wfile.write(index_page.encode("utf-8"))
+
             elif self.path == "/get-content":
                 filepath = os.path.join(Server.path, Server.filename)
 
@@ -36,6 +38,18 @@ class Server:
 
                 self.send_response(200)
                 self.send_header("Content-Type", "text/html")
+                self.end_headers()
+                self.wfile.write(file_content.encode("utf-8"))
+
+            elif self.path == "/style.css":
+                # Serves the style.css
+                filepath = os.path.join(Server.path, "src", "pages", "style.css")
+
+                with open(filepath, "r", encoding="utf-8") as file:
+                    file_content = file.read()
+
+                self.send_response(200)
+                self.send_header("Content-Type", "text/css")
                 self.end_headers()
                 self.wfile.write(file_content.encode("utf-8"))
 

@@ -1,0 +1,91 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Sans";
+}
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+ 
+.container {
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+
+	>.md-editor,
+	.md-previewer {
+		padding: 40px;
+		width: 50%;
+
+		>h2 {
+			border-radius: 3px 3px 0 0;
+			width: 20%;
+
+			font-size: 12pt;
+			color: #505050;
+
+			background-color: #f5f5f5;
+			text-align: center;
+			padding: 10px;
+		}
+
+
+	}
+
+	.md-editor {
+		
+		>textarea {
+			width: 100%;
+			height: 90%;
+			resize: none;
+
+			padding: 16px;
+			border: 1px solid #d1d5db;
+			box-shadow: 0px 0px 10px hsla(0, 0%, 0%, 0.15);
+			
+
+			color: #4b5563;
+			font-size: 1rem;
+			font-family: "Fira Code";
+		}
+
+		>textarea::placeholder {
+			color: rgb(151, 151, 151);
+		}
+	}
+
+	.md-previewer {
+		>h2 {
+			border-radius: 9px 9px 0 0;
+		}
+
+		>.preview {
+			width: 100%;
+			height: 90%;
+			overflow: auto;
+
+			padding: 2rem;
+			border: 1px solid #d1d5db;
+			border-radius: 0 0 9px 9px;
+			box-shadow: 0px 0px 10px hsla(0, 0%, 0%, 0.15);
+
+			background-color: white;
+		}
+	}
+}
+
+ul {
+	list-style-position: outside;
+	padding-left: 20px;
+
+	>li {
+		margin-left: 10px;
+	}
+}

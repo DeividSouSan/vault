@@ -6,173 +6,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>[Document]</title>
 
+	<link rel="stylesheet" href="style.css">
+
 	<!-- Showdown -->
 	<script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
 	<!doctype html>
 
-
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-		rel="stylesheet">
-
 	<style>
-		:root {
-			--body-background: #0D1117;
 
-			--amparo-blue: #415AA6;
-			--daring-indigo: #364A73;
-			--orbital: #6F8ABF;
-			--alphabet-blue: #B3CFF2;
-			--halaka-pila: #F2E085;
-
-			--logo-title-color: #FFFFFF;
-			--logo-subtitle-color: #868687;
-		}
-
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-			font-family: "Fira Code";
-		}
-
-		html,
-		body {
-			height: 100%;
-			margin: 0;
-			display: flex;
-			flex-direction: column;
-		}
-
-		body {
-			background-color: var(--body-background);
-		}
-
-		.logo {
-			padding: 1rem;
-			text-align: center;
-
-			user-select: none;
-
-
-			>h1 {
-				font-size: 5rem;
-				font-weight: 900;
-				color: var(--logo-title-color);
-				margin-bottom: 0;
-			}
-
-			>h2 {
-				font-weight: 900;
-				color: var(--logo-subtitle-color);
-			}
-		}
-
-		.container {
-			flex-grow: 1;
-			display: flex;
-			justify-content: center;
-
-			>.md-editor,
-			.md-previewer {
-				padding: 40px;
-				width: 50%;
-
-				>h2 {
-					background-color: #f5f5f5;
-					text-align: center;
-					padding: 10px;
-				}
-
-			}
-
-			.md-editor {
-				>h2 {
-					border-radius: 9px 9px 0 0;
-				}
-
-				>textarea {
-					width: 100%;
-					height: 80%;
-					resize: none;
-
-					padding: 16px;
-					border: 1px solid #d1d5db;
-					box-shadow: 0px 6px 0px hsla(0, 0%, 100%, 0.25);
-					border-radius: 0 0 9px 9px;
-
-					color: #4b5563;
-					font-size: 1rem;
-					font-family: "Fira Code";
-				}
-
-				>textarea::placeholder {
-					color: rgb(151, 151, 151);
-				}
-			}
-
-			.md-previewer {
-				>h2 {
-					border-radius: 9px 9px 0 0;
-				}
-
-				>.preview {
-					height: 80%;
-					overflow: auto;
-
-					padding: 2rem;
-					border: 1px solid #d1d5db;
-					border-radius: 0 0 9px 9px;
-					box-shadow: 0px 6px 0px hsla(0, 0%, 100%, 0.25);
-
-					background-color: white;
-				}
-			}
-		}
-
-		footer {
-			border-top: 1px solid #e5e7eb;
-			width: 100%;
-			background-color: #f5f5f5;
-			height: 32px;
-			text-align: center;
-			line-height: 32px;
-		}
-
-		ul {
-			list-style-position: outside;
-			padding-left: 20px;
-
-			>li {
-				margin-left: 10px;
-			}
-		}
 	</style>
 </head>
 
 <body>
-	<header class="logo">
-		<h1>vault</h1>
-		<h2>edit and preview markdown files</h2>
-	</header>
 	<section class="container">
 		<section class="md-editor">
-			<h2>Markdown Editor</h2>
+			<h2>Editor</h2>
 			<textarea class="editor" placeholder="O markdown do arquivo vai aqui..."></textarea>
 		</section>
 		<section class="md-previewer">
-			<h2>HTML Preview</h2>
+			<h2>Preview</h2>
 			<div class="preview">
 				<h1>Markdown Example</h1>
 				<p>Write texts here...</p>
 			</div>
 		</section>
 	</section>
-	<footer>
-		@deividsousan
-	</footer>
 	<script>
 		const editor = document.querySelector(".editor");
 		const viewer = document.querySelector(".preview");
